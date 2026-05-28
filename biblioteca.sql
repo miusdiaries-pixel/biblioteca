@@ -33,8 +33,11 @@ CREATE TABLE prestamo (
 );
 
 CREATE TABLE tokens_recuperacion (
-    id     INT AUTO_INCREMENT PRIMARY KEY,
-    email  VARCHAR(100) NOT NULL,
-    token  VARCHAR(64)  NOT NULL,
-    expira DATETIME     NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    expira DATETIME NOT NULL
 );
+
+INSERT INTO persona (id, nombre, edad, email, clave, rol) 
+VALUES (1, 'Admin', 20, 'admin@gmail.com', '$2y$10$pJbWtqAF.xDY/CfoF8vlNeG8TfLmWEYYt1YqIw2pchQ0XTrVMhd5C', 'admin');
