@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f0f4ff 0%, #d9e8ff 100%);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f2937;
+}
+
+body h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #1d4ed8;
+}
+
+body h2 {
+    max-width: 720px;
+    text-align: center;
+    margin: 0 1.5rem 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+a {
+    color: #1d4ed8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body > a,
+body > a + a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding: 0.65rem 1rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+body > a:hover,
+body > a + a:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.acciones {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 1.5rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.separador {
+    color: #1d4ed8;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.back {
+    font-size: 1.5rem;
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+.back:hover {
+    text-decoration: none;
+    color: #133ba7;
+}

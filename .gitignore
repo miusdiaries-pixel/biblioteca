@@ -1,0 +1,12 @@
+/vendor/
+.env
+composer.lock
+/cache/
+/tmp/
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+/uploads/
+/storage/
