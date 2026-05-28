@@ -13,7 +13,9 @@ class AuthController {
         $clave  = $_POST['password'] ?? '';
 
         try {
-            $db = Conexion::conectar();
+            /** @var \PDO $db */
+            $db = \Conexion::conectar();
+            
             $stmt = $db->prepare("SELECT id, nombre, clave, rol FROM persona WHERE email = :email");
             $stmt->execute(['email' => $correo]);
             $usuario = $stmt->fetch();
