@@ -19,6 +19,9 @@ if (!$libro) {
     header("Location: dashboard_admin.php?seccion=libros");
     exit();
 }
+
+$errores = $_SESSION['errores'] ?? [];
+unset($_SESSION['errores']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,12 +32,19 @@ if (!$libro) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light d-flex align-items-center justify-content-center min-vh-100">
-    <div class="card shadow p-4 bg-white" style="max-width: 450px; width: 100%;">
+    <div class="card shadow p-4 bg-white" style="max-width:450px;width:100%;">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h4 class="mb-0">Editar Libro</h4>
             <a href="dashboard_admin.php?seccion=libros" class="btn-close"></a>
         </div>
         <hr>
+        <?php if (!empty($errores)): ?>
+            <div class="alert alert-danger py-2 small">
+                <?php foreach ($errores as $e): ?>
+                    <div><?php echo htmlspecialchars($e); ?></div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <form method="POST" action="../Controllers/LibroController.php?accion=editar&id=<?php echo $libro['id']; ?>">
             <div class="mb-3">
                 <label class="form-label small">Título del Libro</label>

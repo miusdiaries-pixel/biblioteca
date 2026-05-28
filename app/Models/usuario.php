@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/persona.php';
 
 class Usuario extends Persona {
 
@@ -14,5 +15,3 @@ class Usuario extends Persona {
         echo "Edad: " . $this->getEdad() . "<br>";
     }
 }
-
-?>

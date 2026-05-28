@@ -31,3 +31,10 @@ CREATE TABLE prestamo (
     FOREIGN KEY (idUsuario) REFERENCES persona(id),
     FOREIGN KEY (idLibro) REFERENCES libro(id)
 );
+
+CREATE TABLE tokens_recuperacion (
+    id     INT AUTO_INCREMENT PRIMARY KEY,
+    email  VARCHAR(100) NOT NULL,
+    token  VARCHAR(64)  NOT NULL,
+    expira DATETIME     NOT NULL
+);

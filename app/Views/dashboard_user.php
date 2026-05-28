@@ -31,7 +31,7 @@ if (!isset($_SESSION['id_usuario']) && isset($_SESSION['usuario'])) {
 $idUsuario = $_SESSION['id_usuario'];
 
 // 1. Obtener catálogo de libros disponibles
-$libros = $db->query("SELECT * FROM libro")->fetchAll();
+$librosDisponibles = $db->query("SELECT * FROM libro WHERE id NOT IN (SELECT idLibro FROM prestamo WHERE estado = 'pendiente')")->fetchAll();
 
 // 2. Obtener préstamos específicos de este usuario conectado
 $stmt = $db->prepare("SELECT p.*, l.titulo_libro, l.autor FROM prestamo p JOIN libro l ON p.idLibro = l.id WHERE p.idUsuario = :idUsuario");
@@ -78,7 +78,7 @@ $misPrestamos = $stmt->fetchAll();
                                     <tr><th>Título</th><th>Autor</th><th>Año</th><th>Acción</th></tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($libros as $l): ?>
+                                    <?php foreach ($librosDisponibles as $l): ?>
                                         <tr>
                                             <td><strong><?php echo htmlspecialchars($l['titulo_libro']); ?></strong></td>
                                             <td><?php echo htmlspecialchars($l['autor']); ?></td>
@@ -103,16 +103,17 @@ $misPrestamos = $stmt->fetchAll();
                         <div class="table-responsive">
                             <table class="table table-striped align-middle small">
                                 <thead class="table-secondary">
-                                    <tr><th>Libro</th><th>Autor</th><th>Fecha Límite Dev.</th><th>Estado</th></tr>
+                                    <tr><th>Libro</th><th>Autor</th><th>Fecha Solicitud</th><th>Fecha Límite</th><th>Estado</th></tr>
                                 </thead>
                                 <tbody>
                                     <?php if (empty($misPrestamos)): ?>
-                                        <tr><td colspan="4" class="text-center text-muted py-3">Aún no has solicitado ningún libro.</td></tr>
+                                        <tr><td colspan="5" class="text-center text-muted py-3">Aún no has solicitado ningún libro.</td></tr>
                                     <?php endif; ?>
                                     <?php foreach ($misPrestamos as $p): ?>
                                         <tr>
                                             <td><?php echo htmlspecialchars($p['titulo_libro']); ?></td>
                                             <td><?php echo htmlspecialchars($p['autor']); ?></td>
+                                            <td><?php echo htmlspecialchars($p['fecha_solicitud']); ?></td>
                                             <td><?php echo htmlspecialchars($p['fecha_limite']); ?></td>
                                             <td>
                                                 <span class="badge <?php echo $p['estado'] === 'pendiente' ? 'bg-warning text-dark' : 'bg-success'; ?>">
